@@ -11,10 +11,12 @@ public class Project {
     @Id @GeneratedValue
     @Column(name = "project_id")
     private int no;
+
     private String projectName;
 
-    // FK 처리
-//    private Member member;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     private String projectContent;
 
