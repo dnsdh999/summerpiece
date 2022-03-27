@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
     @Entity
     @Getter
-    public class FileBox {
+    public class FileBox<FileBoxStatus> {
 
         @Id
         @GeneratedValue
