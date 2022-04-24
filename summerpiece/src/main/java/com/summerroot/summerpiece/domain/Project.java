@@ -5,16 +5,16 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter
+@Entity @Getter
 public class Project {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id")
     private int no;
 
     private String projectName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -25,6 +25,8 @@ public class Project {
 
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private LocalDateTime createDate;
+
+    @Column(insertable = true, updatable = false)
+    private LocalDateTime createDate = LocalDateTime.now();
 
 }

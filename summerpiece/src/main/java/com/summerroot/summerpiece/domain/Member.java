@@ -5,7 +5,7 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter
+@Entity @Getter
 public class Member {
 
     @Id @GeneratedValue
