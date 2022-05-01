@@ -5,6 +5,7 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+// by 민정. Board 엔티티
 @Entity
 @Getter
 public class Board {
@@ -17,8 +18,8 @@ public class Board {
     private String boardTitle;
     private String boardContent;
 
-    @Column(insertable = true, updatable = false) // update시에는 DB에 저장하지 않음
-    private LocalDateTime boardDate = LocalDateTime.now(); // 현재시간으로 설정 
+    @Column(insertable = true, updatable = false)
+    private LocalDateTime boardDate = LocalDateTime.now();
 
     @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "member-id")
