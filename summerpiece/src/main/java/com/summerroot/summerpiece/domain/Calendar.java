@@ -5,14 +5,12 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity // 이게 맞나....?
-@Table(name = "calendar") // 이건..??
-@Getter
+@Entity @Getter
 public class Calendar {
 
     @Id @GeneratedValue
-    @Column(name = "calendar_no")
-    private int calendarNo;
+    @Column(name = "calendar_id")
+    private int id;
 
     private LocalDateTime calendarStartDate;
     private LocalDateTime calendarEndDate;
@@ -23,8 +21,8 @@ public class Calendar {
     private String calendarContent;
     private String calendarColor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_no")
-    private Member member;
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member calendarWriter;
 
 }

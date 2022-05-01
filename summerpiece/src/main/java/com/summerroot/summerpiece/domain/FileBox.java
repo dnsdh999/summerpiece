@@ -16,9 +16,9 @@ public class FileBox {
     @Column(name = "file_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "board_no")
-    private Board boardNo;
+    @ManyToOne(targetEntity = Board.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     @Column(nullable = false)
     private String fileOriginName;
@@ -40,9 +40,9 @@ public class FileBox {
 
     private String fileType;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member memberNo;
+    private Member fileUploadMember;
 
     @Enumerated(EnumType.STRING)
     private FileBoxStatus status;

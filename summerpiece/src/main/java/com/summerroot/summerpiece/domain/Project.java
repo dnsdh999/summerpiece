@@ -4,6 +4,8 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity @Getter
 public class Project {
@@ -28,5 +30,8 @@ public class Project {
 
     @Column(insertable = true, updatable = false)
     private LocalDateTime createDate = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    private List<Board> boards = new ArrayList<>();
 
 }
