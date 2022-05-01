@@ -22,7 +22,7 @@ public class Board {
     private LocalDateTime boardDate = LocalDateTime.now();
 
     @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "member-id")
+    @JoinColumn(name = "member_id")
     private Member boardWriter;
 
     @ManyToOne(targetEntity = Project.class, fetch = FetchType.LAZY)
