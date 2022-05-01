@@ -16,7 +16,7 @@ public class FileBox {
     @Column(name = "file_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Board.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "board_no")
     private Board boardNo;
 
@@ -40,7 +40,7 @@ public class FileBox {
 
     private String fileType;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member memberNo;
 
