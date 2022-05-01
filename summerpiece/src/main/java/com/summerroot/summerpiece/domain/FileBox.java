@@ -1,36 +1,50 @@
 package com.summerroot.summerpiece.domain;
 
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-    @Entity
-    @Getter
-    public class FileBox<FileBoxStatus> {
+@Entity
+@Getter
+public class FileBox {
 
-        @Id
-        @GeneratedValue
-        @Column(name = "file_no")
-        private int fileNo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "file_id")
+    private Long id;
 
-        private String filePath;
-        private Long fileSize;
+    @ManyToOne
+    @JoinColumn(name = "board_no")
+    private Board boardNo;
 
-        private String fileOriginName;
-        private String fileChangeName;
+    @Column(nullable = false)
+    private String fileOriginName;
 
-        private LocalDateTime fileUpdateDate;
+    @Column(nullable = false)
+    private String filePath;
 
-        // 연관 관계
-//    private Project projectNo;
+    @Column(nullable = false)
+    private String fileSavedName;
 
-        @ManyToOne
-        @JoinColumn(name = "boardId")
-        private Board boardNo;
+    private Long fileSize;
 
-        @Enumerated(EnumType.STRING)
-        private FileBoxStatus status;
+    // @CreationTimestamp
+    @CreatedDate
+    private LocalDateTime fileUpdateDate;
 
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
 
-    }
+    private String fileType;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member memberNo;
+
+    @Enumerated(EnumType.STRING)
+    private FileBoxStatus status;
+
+}
