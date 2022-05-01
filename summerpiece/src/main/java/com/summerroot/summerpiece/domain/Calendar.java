@@ -20,11 +20,11 @@ public class Calendar {
 
     @Enumerated(EnumType.STRING)
     private String calendarState;
-
     private String calendarContent;
+    private String calendarColor;
 
-    @ManyToOne(fetch = FetchType.LAZY) // 이건....?
-    @JoinColumn(name = "project_no")
-    private Project project; // 이건..? //프로젝트에 oneToMany 추가..?
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_no")
+    private Member member;
 
 }
