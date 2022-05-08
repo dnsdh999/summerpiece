@@ -17,7 +17,7 @@ public class Calendar {
     private LocalDateTime calendarModifyDate;
 
     @Enumerated(EnumType.STRING)
-    private String calendarState;
+    private CalendarState calendarState;
     private String calendarContent;
     private String calendarColor;
 
