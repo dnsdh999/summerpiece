@@ -35,4 +35,12 @@ public class Member {
 
     @OneToMany(mappedBy = "calendarWriter", cascade = CascadeType.ALL)
     private List<Calendar> calendars = new ArrayList<>();
+
+    public Member(String email, String pwd, String name, String nickname, String phone) {
+        this.email = email;
+        this.pwd = pwd;
+        this.name = name;
+        this.nickname = nickname;
+        this.phone = phone;
+    }
 }
