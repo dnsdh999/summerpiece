@@ -13,7 +13,7 @@ public class CalendarRepository {
 
     private final EntityManager em;
 
-    public List<Calendar> findCalendarList(int memberId) {
+    public List<Calendar> findCalendarList(Long memberId) {
         String jpql = "select c from Calendar c wherw c.member = " + memberId;
 
         return em.createQuery(jpql, Calendar.class).getResultList();

@@ -15,7 +15,7 @@ public class CalendarService {
 
     private final CalendarRepository calendarRepository;
 
-    public List<Calendar> findCalendarList(int id) {
+    public List<Calendar> findCalendarList(Long id) {
         return calendarRepository.findCalendarList(id);
     }
 }

@@ -18,14 +18,37 @@
       selectable: true,
       selectMirror: true,
       select: function(arg) {
-        let title = prompt('Event Title:');
-        if (title) {
-          calendar.addEvent({
-            title: title,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-          })
+        let calendarContent = prompt('일정 내용을 입력하세요.');
+        if (calendarContent) {
+          let calendarStartDate = arg.start;
+          let calendarEndDate = arg.end;
+          let isAllDay = arg.allDay;
+
+          let data = {
+            "calendarStartDate":calendarStartDate,
+            "calendarEndDate":calendarEndDate,
+            "isAllDay":isAllDay
+          }
+
+          $.ajax({
+            url: '/calendar/schedule',
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function(data){
+              calendar.addEvent({
+                title: calendarContent,
+                start: calendarStartDate,
+                end: calendarEndDate,
+                allDay: isAllDay
+              });
+            },
+            error: function (request, status, error){
+              console.log("code : " + request.status
+                      + "\nmessage : " + request.responseText
+                      + "\nerror : " + error);
+            }
+          });
         }
         calendar.unselect()
       },
@@ -38,7 +61,8 @@
       dayMaxEvents: true, // allow "more" link when too many events
       events: function(info, successCallback, failureCallback){
         $.ajax({
-          url: '/calendar/getSchedule',
+          url: '/calendar/schedule',
+          method: 'GET',
           dataType: 'json',
           success: function(data) {
             let events = [];
@@ -70,12 +94,17 @@
                   title: element.calendarContent,
                   start: calendarStartDate,
                   end: calendarEndDate,
-                  url: "calendar/detail?id="+element.id,
+                  url: "POST/calendar/schedule/"+element.id,
                   color: calendarColor
                 });
               });
             }
             successCallback(events);
+          },
+          error: function (request, status, error){
+            console.log("code : " + request.status
+                    + "\nmessage : " + request.responseText
+                    + "\nerror : " + error);
           }
         });
       },

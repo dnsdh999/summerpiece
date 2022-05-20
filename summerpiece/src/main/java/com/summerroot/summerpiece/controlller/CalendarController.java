@@ -1,14 +1,14 @@
 package com.summerroot.summerpiece.controlller;
 
+import com.summerroot.summerpiece.domain.Calendar;
 import com.summerroot.summerpiece.domain.Member;
 import com.summerroot.summerpiece.service.CalendarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -22,19 +22,32 @@ public class CalendarController {
         return "calendar/calendarMain";
     }
 
-    @GetMapping("/calendar/getSchedule")
+    @GetMapping("/calendar/schedule")
     @ResponseBody
-    public String getSchedule(){
+    public List<Calendar> getScheduleList(){
         Member m = new Member();
 
-        calendarService.findCalendarList(m.getId());
+        List<Calendar> calendarList = calendarService.findCalendarList(m.getId());
 
+        return calendarList;
+    }
+
+    @PostMapping("/calendar/schedule/{id}")
+    @ResponseBody
+    public String addSchedule(@PathVariable String id){
         return "";
     }
 
-    @PostMapping("/calendar/addSchedule")
+
+    @DeleteMapping("/calendar/schedule/{id}")
     @ResponseBody
-    public String addSchedule(){
+    public String deleteSchedule(@PathVariable String id){
+        return "";
+    }
+
+    @PutMapping("/calendar/schadule")
+    @ResponseBody
+    public String updateSchedule(){
         return "";
     }
 
