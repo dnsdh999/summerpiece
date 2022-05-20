@@ -1,6 +1,7 @@
 package com.summerroot.summerpiece.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Getter
+@NoArgsConstructor
 public class Member {
 
     @Id @GeneratedValue
     @Column(name = "member_id")
-    private int id;
+    private Long id;
 
     private String email;
     private String pwd;
@@ -43,4 +45,5 @@ public class Member {
         this.nickname = nickname;
         this.phone = phone;
     }
+
 }

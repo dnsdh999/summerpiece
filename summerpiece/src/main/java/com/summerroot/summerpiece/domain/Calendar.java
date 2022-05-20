@@ -1,5 +1,6 @@
 package com.summerroot.summerpiece.domain;
 
+import com.summerroot.summerpiece.converter.BooleanToYNConverter;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -10,11 +11,14 @@ public class Calendar {
 
     @Id @GeneratedValue
     @Column(name = "calendar_id")
-    private int id;
+    private Long id;
 
     private LocalDateTime calendarStartDate;
     private LocalDateTime calendarEndDate;
     private LocalDateTime calendarModifyDate;
+
+    @Convert(converter = BooleanToYNConverter.class)
+    private boolean isAllDay;
 
     @Enumerated(EnumType.STRING)
     private CalendarState calendarState;

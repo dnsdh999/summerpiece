@@ -12,7 +12,7 @@ public class Project {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id")
-    private int no;
+    private Long id;
 
     private String projectName;
 
