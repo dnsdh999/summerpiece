@@ -18,4 +18,16 @@ public class CalendarRepository {
 
         return em.createQuery(jpql, Calendar.class).getResultList();
     }
+
+    public void save(Calendar calendar) {
+        if(calendar.getId() == null){
+            em.persist(calendar);
+        } else {
+            em.merge(calendar);
+        }
+    }
+
+    public Calendar findOne(Long calendarId) {
+        return em.find(Calendar.class, calendarId);
+    }
 }

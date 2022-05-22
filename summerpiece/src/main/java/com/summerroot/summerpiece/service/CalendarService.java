@@ -18,4 +18,24 @@ public class CalendarService {
     public List<Calendar> findCalendarList(Long id) {
         return calendarRepository.findCalendarList(id);
     }
+
+    @Transactional
+    public void saveCalendar(Calendar calendar) {
+        calendarRepository.save(calendar);
+    }
+
+    @Transactional
+    public void deleteCalendar(Long calendarId) {
+        Calendar findCalendar = calendarRepository.findOne(calendarId);
+        findCalendar.deleteCalendar();
+    }
+
+    @Transactional
+    public void updateCalendar(Calendar calendar) {
+        calendarRepository.save(calendar);
+    }
+
+    public Calendar findCalendar(Long id) {
+        return calendarRepository.findOne(id);
+    }
 }

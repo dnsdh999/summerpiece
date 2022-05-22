@@ -29,4 +29,17 @@ public class Calendar {
     @JoinColumn(name = "member_id")
     private Member calendarWriter;
 
+    public void calendarInfoInit(Member calendarWriter){
+        this.calendarModifyDate = LocalDateTime.now();
+        this.calendarState = CalendarState.Y;
+        this.calendarWriter = calendarWriter;
+    }
+
+    public void deleteCalendar(){
+        this.calendarState = CalendarState.N;
+    }
+
+    public void updateCalendar(Long id){
+        this.id = id;
+    }
 }
