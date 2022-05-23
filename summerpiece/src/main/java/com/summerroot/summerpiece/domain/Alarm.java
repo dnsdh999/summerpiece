@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class Alarm {
 
     @Id @GeneratedValue
-    @Column(name = "alarm_no")
-    private int alarmNo;
+    @Column(name = "alarm_id")
+    private Long id;
 
     private int alarmType;
 
