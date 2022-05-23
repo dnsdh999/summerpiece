@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Reply {
     @Id @GeneratedValue
     @Column(name = "reply_id")
-    private int id;
+    private Long id;
 
     private String replyCont;
 
